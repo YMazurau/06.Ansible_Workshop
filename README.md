@@ -1,6 +1,6 @@
 # 06. Ansible Workshop
 
-Web server software - Nginx. The data for configuring Nginx is in the files nginx.conf.j2, index.html.j2 in the derrictory 06.Ansible.Workshop/templates. Variables are taken from a file 06.Ansible.Workshop/vars/main.yaml. 
+Web server software - Nginx. The data for configuring Nginx is in the files nginx.conf.j2, index.html.j2 in the derrictory 06.Ansible.Workshop/templates. Variables are taken from a file 06.Ansible.Workshop/vars/main.yaml
 
 main.yaml
 ```yaml
@@ -157,18 +157,18 @@ nginx_install.yaml
         path: /var/www/html
         state: absent
 
-    # - name: Check content to the sites
-    #   uri:
-    #     url: "{{ item }}"
-    #     return_content: yes
-    #   with_items:
-    #    - emazurov1.com
-    #    - emazurov2.com
-    #   #loop: "{{ sites_config }}"    
-    #   register: this
-    #   failed_when: "This website is hosted on"
-    #   tags:
-    #   - tests
+    - name: Check content to the sites
+      uri:
+        url: "{{ item.url }}"
+        return_content: yes
+      # with_items:
+      #  - http://emazurov1.com
+      #  - http://emazurov2.com
+      loop: "{{ sites_config }}"    
+      register: this
+      failed_when: "'This website is hosted on' not in this.content"
+      tags:
+      - tests
 
     # - name: Send HTTP request to the website
     #   uri:

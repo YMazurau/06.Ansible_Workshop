@@ -3,8 +3,8 @@ sites_config:
   - name: emazurov1
     domain: emazurov1.com
     root: /var/www/emazurov1
-    url: emazurov1.com
+    url: http://emazurov1.com
   - name: emazurov2
     domain: emazurov2.com
     root: /var/www/emazurov2
-    url: emazurov2.com
+    url: http://emazurov2.com
